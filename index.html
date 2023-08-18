@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav>
+      <p>Log in to get started</p>
+      <img src="images/logo.png" alt="" />
+      <form action="">
+        <input type="text" placeholder="user" />
+        <input type="text" placeholder="pin" />
+        <i class="fa-solid fa-arrow-right"></i>
+      </form>
+    </nav>
+    <div class="app">
+      <div class="balance-div">
+        <h5>Current Balance</h5>
+        <p>As of 5/8/2023</p>
+      </div>
+      <h5>Rs0000</h5>
+    </div>
+
+    <!-- movement -->
+    <div class="movement-parent">
+      <div class="movement">
+        <div class="movement-row">
+          <div class="movement-deposit">2 deposit</div>
+          <div class="movement-date">2 days ago</div>
+          <div class="movement-value">rs4000</div>
+        </div>
+        <div class="movement-row">
+          <div class="movement-deposit">2 deposit</div>
+          <div class="movement-date">2 days ago</div>
+          <div class="movement-value">rs4000</div>
+        </div>
+        <div class="movement-row">
+          <div class="movement-deposit">2 deposit</div>
+          <div class="movement-date">2 days ago</div>
+          <div class="movement-value">rs4000</div>
+        </div>
+      </div>
+      <div class="deposit-section">
+        <div class="transfer-money deposit">
+          <p>transfer money</p>
+          <input type="text" />
+          <input type="text" />
+          <button><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+        <div class="request-loan deposit">
+          <p>request loan</p>
+          <input type="text" />
+          <input type="text" />
+          <button><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+        <div class="close-account deposit">
+          <p>request loan</p>
+          <input type="text" />
+          <input type="text" />
+          <button><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="details">
+      <p>IN <span class="in">$18,900.00</span></p>
+      <p>OUT <span class="out">$6,180.00</span></p>
+      <p>INTEREST <span class="interest">$283.50</span></p>
+      <p>&darr; SORT</p>
+      <p>You will be logged out in time</p>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

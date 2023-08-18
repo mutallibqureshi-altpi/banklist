@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,500;1,400;1,500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: aliceblue;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+nav p {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+nav img {
+  height: 60px;
+}
+
+nav input {
+  width: 100px;
+  border-radius: 20px;
+  font-size: 1rem;
+  padding: 0.5rem;
+  background-color: #fff;
+  outline-color: #ccc;
+  margin: 0 2rem;
+  border: none;
+}
+
+nav input::placeholder {
+  color: #ccc;
+  padding: 1rem;
+}
+
+nav i {
+  font-size: 1.2rem;
+}
+
+.app {
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem;
+}
+
+.app h5 {
+  font-size: 2rem;
+}
+
+.app p {
+  font-weight: 200;
+}
+
+.movement-parent {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.movement {
+  border-radius: 20px;
+  background-color: #fff;
+  margin-left: 2rem;
+  width: 550px;
+}
+
+.movement-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 70px;
+  text-transform: capitalize;
+  border-bottom: 1px solid #ccc;
+  margin-left: 2rem;
+  border-radius: 20px;
+}
+
+.movement-deposit {
+  background-color: green;
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.5rem;
+  height: fit-content;
+}
+
+.deposit {
+  width: 500px;
+  background-color: orange;
+  margin: 0 2rem;
+  height: 150px;
+  padding: 2rem;
+  text-transform: capitalize;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.deposit p {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.deposit input {
+  border: none;
+  outline: none;
+  width: 150px;
+  padding: 0.8rem;
+  background-color: rgb(245, 185, 73, 1);
+  margin: 1rem;
+  border-radius: 10px;
+}
+
+.deposit button {
+  width: 4rem;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+}
+
+.request-loan {
+  background-color: green;
+}
+
+.request-loan input {
+  background-color: rgb(24, 151, 24, 1);
+}
+
+.close-account {
+  background-color: lightcoral;
+}
+
+.close-account input {
+  background-color: rgb(184, 94, 94);
+}
+
+.details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.details p {
+  margin: 1rem;
+  font-size: 0.8rem;
+}
+
+.details p span {
+  font-size: 2rem;
+  color: rgb(24, 151, 24, 1);
+}
+
+.details p .out {
+  color: rgb(184, 94, 94);
+}
