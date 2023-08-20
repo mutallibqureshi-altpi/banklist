@@ -11,73 +11,88 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>Document</title>
+    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon" />
+    <title>Bankist</title>
   </head>
   <body>
+    <!-- nav -->
     <nav>
-      <p>Log in to get started</p>
+      <p class="welcome-msg">Log in to get started</p>
       <img src="images/logo.png" alt="" />
       <form action="">
-        <input type="text" placeholder="user" />
-        <input type="text" placeholder="pin" />
-        <i class="fa-solid fa-arrow-right"></i>
+        <input type="text" placeholder="user" class="user-input" />
+        <input type="text" placeholder="pin" class="user-pin" />
+        <button class="login-btn">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
       </form>
     </nav>
-    <div class="app">
-      <div class="balance-div">
-        <h5>Current Balance</h5>
-        <p>As of 5/8/2023</p>
+    <div class="container">
+      <!-- balance -->
+      <div class="app">
+        <div class="balance-div">
+          <h5>Current Balance</h5>
+          <p>As of 5/8/2023</p>
+        </div>
+        <h5 class="balance-value">Rs0000</h5>
       </div>
-      <h5>Rs0000</h5>
-    </div>
 
-    <!-- movement -->
-    <div class="movement-parent">
-      <div class="movement">
-        <div class="movement-row">
-          <div class="movement-deposit">2 deposit</div>
-          <div class="movement-date">2 days ago</div>
-          <div class="movement-value">rs4000</div>
-        </div>
-        <div class="movement-row">
-          <div class="movement-deposit">2 deposit</div>
-          <div class="movement-date">2 days ago</div>
-          <div class="movement-value">rs4000</div>
-        </div>
-        <div class="movement-row">
-          <div class="movement-deposit">2 deposit</div>
-          <div class="movement-date">2 days ago</div>
-          <div class="movement-value">rs4000</div>
+      <!-- movement -->
+      <div class="movement-parent">
+        <div class="movement"></div>
+        <div class="deposit-section">
+          <div class="transfer-money deposit">
+            <p>transfer money</p>
+            <form action="">
+              <input type="text" class="transfer-input" />
+              <input type="number" class="transfer-amount" />
+              <button class="transfer-btn">
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+              <div class="labels">
+                <p>Transfer tor</p>
+                <p>Amount</p>
+              </div>
+            </form>
+          </div>
+          <div class="request-loan deposit">
+            <p>request loan</p>
+            <form action="">
+              <input type="number" class="loan-input" />
+              <button class="loan-btn">
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+              <div class="labels">
+                <p>Amount</p>
+              </div>
+            </form>
+          </div>
+          <div class="close-account deposit">
+            <p>Close account</p>
+            <form action="">
+              <input type="text" class="close-user-input" />
+              <input type="number" class="close-user-pin" />
+              <button class="close-account-btn">
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+              <div class="labels">
+                <p>Confirm user</p>
+                <p>Confirm PIN</p>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-      <div class="deposit-section">
-        <div class="transfer-money deposit">
-          <p>transfer money</p>
-          <input type="text" />
-          <input type="text" />
-          <button><i class="fa-solid fa-arrow-right"></i></button>
-        </div>
-        <div class="request-loan deposit">
-          <p>request loan</p>
-          <input type="text" />
-          <input type="text" />
-          <button><i class="fa-solid fa-arrow-right"></i></button>
-        </div>
-        <div class="close-account deposit">
-          <p>request loan</p>
-          <input type="text" />
-          <input type="text" />
-          <button><i class="fa-solid fa-arrow-right"></i></button>
-        </div>
+      <!-- details-summary -->
+      <div class="details">
+        <p>IN <span class="income">$18,900.00</span></p>
+        <p>OUT <span class="outcome">$6,180.00</span></p>
+        <p>INTEREST <span class="interest">$283.50</span></p>
+        <p>&darr; SORT</p>
+        <p>You will be logged out in time</p>
       </div>
-    </div>
-    <div class="details">
-      <p>IN <span class="in">$18,900.00</span></p>
-      <p>OUT <span class="out">$6,180.00</span></p>
-      <p>INTEREST <span class="interest">$283.50</span></p>
-      <p>&darr; SORT</p>
-      <p>You will be logged out in time</p>
     </div>
     <script src="app.js"></script>
+    <!-- <script src="demo.js"></script> -->
   </body>
 </html>

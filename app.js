@@ -1,10 +1,10 @@
 const account1 = {
   owner: "Jonas Schmedtmann",
-  movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
+  arrVal: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
   interestRate: 1.2,
   pin: 1111,
 
-  movementsDates: [
+  arrValDates: [
     "2022-11-18T21:31:17.178Z",
     "2022-12-23T07:42:02.383Z",
     "2023-01-28T09:15:04.904Z",
@@ -20,11 +20,30 @@ const account1 = {
 
 const account2 = {
   owner: "Jessica Davis",
-  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  arrVal: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
 
-  movementsDates: [
+  arrValDates: [
+    "2022-11-01T13:15:33.035Z",
+    "2022-11-30T09:48:16.867Z",
+    "2022-12-25T06:04:23.907Z",
+    "2023-01-25T14:18:46.235Z",
+    "2023-02-05T16:33:06.386Z",
+    "2023-04-10T14:43:26.374Z",
+    "2023-06-25T18:49:59.371Z",
+    "2023-07-26T12:01:20.894Z",
+  ],
+  currency: "USD",
+  locale: "en-US",
+};
+const account3 = {
+  owner: "Abdul Mutallib Qureshi",
+  arrVal: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  interestRate: 1.9,
+  pin: 3333,
+
+  arrValDates: [
     "2022-11-01T13:15:33.035Z",
     "2022-11-30T09:48:16.867Z",
     "2022-12-25T06:04:23.907Z",
@@ -38,21 +57,170 @@ const account2 = {
   locale: "en-US",
 };
 
+const accounts = [account1, account2, account3];
+
 const movement = document.querySelector(".movement");
-console.log(movement);
-const displayMoments = (movements) => {
-  movements.forEach((val, i) => {
-    const type = val > 0 ? "deposit" : "withdrawal";
+const balanceValue = document.querySelector(".balance-value");
+const incomes = document.querySelector(".income");
+const outcomes = document.querySelector(".outcome");
+const interests = document.querySelector(".interest");
+const userInput = document.querySelector(".user-input");
+const userPin = document.querySelector(".user-pin");
+const loginBtn = document.querySelector(".login-btn");
+const welcomeMsg = document.querySelector(".welcome-msg");
+const container = document.querySelector(".container");
+const transferInput = document.querySelector(".transfer-input");
+const transferAmount = document.querySelector(".transfer-amount");
+const transferBtn = document.querySelector(".transfer-btn");
+const closeUserInput = document.querySelector(".close-user-input");
+const closeUserPin = document.querySelector(".close-user-pin");
+const closeAccountBtn = document.querySelector(".close-account-btn");
+const loanInput = document.querySelector(".loan-input");
+const loanBtn = document.querySelector(".loan-btn");
+
+const displayMoments = (data) => {
+  movement.innerHTML = "";
+  data.forEach((val, i) => {
+    const type = val > 0 ? "deposite" : "withdrawal";
     const html = `
     <div class="movement-row">
-    <div class="movement-deposit">${i + 1} ${type}</div>
+    <div class="movement-deposit ${type}">${i + 1} ${type}</div>
     <div class="movement-date">2 days ago</div>
-    <div class="movement-value">Rs${val}</div>
+    <div class="movement-value">${val}Rs</div>
   </div>
         `;
-    console.log(html);
     movement.insertAdjacentHTML("afterbegin", html);
   });
 };
 
-displayMoments(account1.movements);
+const createUsername = (user) => {
+  user.forEach((acc) => {
+    acc.username = acc.owner
+      .toLocaleLowerCase()
+      .split(" ")
+      .map((val) => val[0])
+      .join("");
+  });
+};
+
+createUsername(accounts);
+
+const updateUI = (acc) => {
+  displayMoments(acc.arrVal);
+  balance(acc);
+  displayBalance(acc);
+};
+
+const balance = (acc) => {
+  acc.balance = acc.arrVal.reduce((acc, curr) => acc + curr, 0);
+  balanceValue.innerHTML = `Rs${acc.balance} `;
+};
+
+const displayBalance = (acc) => {
+  const income = acc.arrVal
+    .filter((val) => val > 0)
+    .reduce((acc, curr) => acc + curr, 0);
+  const fixedIncome = income.toFixed(2);
+  incomes.innerHTML = `$${fixedIncome}`;
+
+  const outcome = acc.arrVal
+    .filter((val) => val < 0)
+    .reduce((acc, curr) => acc + curr, 0);
+  const fixedOutcome = Math.abs(outcome).toFixed(2);
+  outcomes.innerHTML = `$${fixedOutcome}`;
+
+  const interest = acc.arrVal
+    .filter((data) => data > 0)
+    .map((val) => (val * acc.interestRate) / 100)
+    .filter((val) => val >= 1)
+    .reduce((acc, curr) => acc + curr, 0);
+  const fixedInterest = interest.toFixed(2);
+  interests.innerHTML = `$${fixedInterest}`;
+};
+
+const rsToUsd = 0.012;
+const totalDepositUsd = account1.arrVal
+  .filter((val) => val > 0)
+  .map((val) => val * rsToUsd)
+  .reduce((acc, curr) => acc + curr, 0);
+console.log(totalDepositUsd);
+
+// login-user
+let currentAccount;
+const checkUser = (e) => {
+  e.preventDefault();
+  currentAccount = accounts.find((user) => user.username === userInput.value);
+
+  if (currentAccount?.pin === Number(userPin.value)) {
+    welcomeMsg.innerHTML = `Good Day, ${currentAccount.owner.split(" ")[0]}`;
+    container.style.opacity = 100;
+
+    // update-UI
+    updateUI(currentAccount);
+  } else {
+    console.log("chor");
+  }
+  userInput.value = "";
+  userPin.value = "";
+  userPin.blur();
+};
+
+loginBtn.addEventListener("click", checkUser);
+
+// transfer-money
+const transferMoney = (e) => {
+  e.preventDefault();
+  const amount = Number(transferAmount.value);
+  const receiverAcc = accounts.find(
+    (acc) => acc.username === transferInput.value
+  );
+  if (
+    amount > 0 &&
+    receiverAcc &&
+    currentAccount.balance >= amount &&
+    receiverAcc?.username !== currentAccount.username
+  ) {
+    currentAccount.arrVal.push(-amount);
+    receiverAcc.arrVal.push(amount);
+    // update-UI
+    updateUI(currentAccount);
+  } else {
+    console.log("error");
+  }
+  transferAmount.value = "";
+  transferInput.value = "";
+  transferInput.blur();
+};
+
+transferBtn.addEventListener("click", transferMoney);
+
+// closing-user-account
+const closeUserAccount = (e) => {
+  e.preventDefault();
+  if (
+    closeUserInput.value === currentAccount.username &&
+    Number(closeUserPin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      (val) => val.username === currentAccount.username
+    );
+    accounts.splice(index, 1);
+    container.style.opacity = 0;
+  }
+};
+
+closeAccountBtn.addEventListener("click", closeUserAccount);
+
+const initiateLoan = (e) => {
+  e.preventDefault();
+  const amount = Number(loanInput.value);
+  const data = currentAccount.arrVal.some((val) => val >= amount * 0.1);
+  if (amount > 0 && data) {
+    currentAccount.arrVal.push(amount);
+    updateUI(currentAccount);
+  } else {
+    console.log("to high");
+  }
+};
+
+loanBtn.addEventListener("click", initiateLoan);
