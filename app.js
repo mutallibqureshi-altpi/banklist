@@ -1,5 +1,5 @@
 const account1 = {
-  owner: "Jonas Schmedtmann",
+  owner: "Abdul Mutallib Qureshi",
   arrVal: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
   interestRate: 1.2,
   pin: 1111,
@@ -19,8 +19,8 @@ const account1 = {
 };
 
 const account2 = {
-  owner: "Jessica Davis",
-  arrVal: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  owner: "Ayan Shaikh",
+  arrVal: [5000, -790, 3400, -150, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
 
@@ -38,8 +38,8 @@ const account2 = {
   locale: "en-US",
 };
 const account3 = {
-  owner: "Abdul Mutallib Qureshi",
-  arrVal: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  owner: "Salman Ansari",
+  arrVal: [500, 900, -2000, 6000, 200, -4000, 10000, -100, -40],
   interestRate: 1.9,
   pin: 3333,
 
@@ -56,8 +56,27 @@ const account3 = {
   currency: "USD",
   locale: "en-US",
 };
+const account4 = {
+  owner: "Amaan Alam",
+  arrVal: [40, 100, -500, 6000, -500, 25, 10],
+  interestRate: 1.9,
+  pin: 4444,
 
-const accounts = [account1, account2, account3];
+  arrValDates: [
+    "2022-11-01T13:15:33.035Z",
+    "2022-11-30T09:48:16.867Z",
+    "2022-12-25T06:04:23.907Z",
+    "2023-01-25T14:18:46.235Z",
+    "2023-02-05T16:33:06.386Z",
+    "2023-04-10T14:43:26.374Z",
+    "2023-06-25T18:49:59.371Z",
+    "2023-07-26T12:01:20.894Z",
+  ],
+  currency: "USD",
+  locale: "en-US",
+};
+
+const accounts = [account1, account2, account3, account4];
 
 const movement = document.querySelector(".movement");
 const balanceValue = document.querySelector(".balance-value");
@@ -77,10 +96,13 @@ const closeUserPin = document.querySelector(".close-user-pin");
 const closeAccountBtn = document.querySelector(".close-account-btn");
 const loanInput = document.querySelector(".loan-input");
 const loanBtn = document.querySelector(".loan-btn");
+const sortBtn = document.querySelector(".sort-btn");
 
-const displayMoments = (data) => {
+const displayMoments = (data, sort) => {
   movement.innerHTML = "";
-  data.forEach((val, i) => {
+  const movs = sort ? data.slice().sort((a, b) => a - b) : data;
+
+  movs.forEach((val, i) => {
     const type = val > 0 ? "deposite" : "withdrawal";
     const html = `
     <div class="movement-row">
@@ -138,12 +160,13 @@ const displayBalance = (acc) => {
   interests.innerHTML = `$${fixedInterest}`;
 };
 
-const rsToUsd = 0.012;
-const totalDepositUsd = account1.arrVal
-  .filter((val) => val > 0)
-  .map((val) => val * rsToUsd)
-  .reduce((acc, curr) => acc + curr, 0);
-console.log(totalDepositUsd);
+// conversion
+// const rsToUsd = 0.012;
+// const totalDepositUsd = account1.arrVal
+//   .filter((val) => val > 0)
+//   .map((val) => val * rsToUsd)
+//   .reduce((acc, curr) => acc + curr, 0);
+// console.log(totalDepositUsd);
 
 // login-user
 let currentAccount;
@@ -224,3 +247,11 @@ const initiateLoan = (e) => {
 };
 
 loanBtn.addEventListener("click", initiateLoan);
+
+let sorted = false;
+const sortItem = () => {
+  displayMoments(currentAccount.arrVal, !sorted);
+  sorted = !sorted;
+};
+
+sortBtn.addEventListener("click", sortItem);

@@ -42,3 +42,25 @@ const avgHumanAge = (age) => {
   return humanAge;
 };
 console.log(avgHumanAge(sum));
+
+const num = [1, 2, 82, [5, 8, 5], [5, 8, [11, 8, 10], 1]];
+console.log(num.flat(2));
+
+const overall = accounts.flatMap((val) => val.arrVal);
+// .reduce((acc, curr) => acc + curr, 0);
+console.log(overall);
+
+const names = [
+  "",
+  "xerkh",
+  "abdul",
+  "qureshi",
+  "mutallib",
+  "ydfjh",
+  "zhsh",
+  "dskh",
+];
+
+console.log(names.sort());
+
+console.log(overall.sort((a, b) => (a > b ? 1 : -1)));

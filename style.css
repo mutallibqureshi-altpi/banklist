@@ -29,7 +29,7 @@ nav img {
 }
 
 nav input {
-  width: 100px;
+  width: 6rem;
   border-radius: 20px;
   font-size: 1rem;
   padding: 0.5rem;
@@ -77,6 +77,7 @@ nav i {
   display: flex;
   justify-content: center;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 /* movement-section */
@@ -197,4 +198,13 @@ nav i {
 
 .details p .outcome {
   color: rgb(184, 94, 94);
+}
+
+.details .sort-btn {
+  cursor: pointer;
+}
+
+.details .timer {
+  font-size: 0.8rem;
+  color: #000;
 }
